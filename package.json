@@ -1,0 +1,29 @@
+{
+  "name": "hubot-splunk-mint",
+  "version": "0.1.0",
+  "description": "Access SplunkMint data via hubot",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/barbosa/hubot-splunk-mint"
+  },
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "splunk",
+    "splunk-mint",
+    "bugsense"
+  ],
+  "author": "Gustavo Barbosa <gustavocsb@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/barbosa/hubot-splunk-mint/issues"
+  },
+  "homepage": "https://github.com/barbosa/hubot-splunk-mint",
+  "dependencies": {
+    "coffee-script": "^1.8.0"
+  }
+}
