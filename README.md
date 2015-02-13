@@ -1,6 +1,6 @@
 hubot-splunk-mint
 =================
-Access data from [SplunkMint](http://mint.splunk.com) via hubot.
+Access data from [Splunk Mint](http://mint.splunk.com) via hubot.
 
 
 ## Installation
