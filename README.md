@@ -5,7 +5,7 @@ Access data from [Splunk Mint](http://mint.splunk.com) via hubot.
 
 ## Installation
 
-Add **hubot-splunk-mint** to your `package.json`file:
+Add **hubot-splunk-mint** to your `package.json` file:
 
 ```javascript
 "dependencies": {
@@ -22,6 +22,7 @@ Add **hubot-splunk-mint** to your `external-scripts.json` file:
   "hubot-splunk-mint"
 ]
 ```
+
 Run `npm install`
 
 ## Configuration
