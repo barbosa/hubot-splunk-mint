@@ -23,7 +23,8 @@ module.exports = (robot) ->
     robot.http(apiURL("/project/#{process.env.HUBOT_SPLUNK_KEY}/analytics.json"))
       .header("X-BugSense-Auth-Token", "#{process.env.HUBOT_SPLUNK_PROJECT_KEY}")
       .header('Accept', 'application/json')
-      .get() (err, res, body) -> if err
+      .get() (err, res, body) ->
+        if err
           msg.send "Couldn't find anything :("
           return
 
