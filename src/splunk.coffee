@@ -20,12 +20,16 @@ module.exports = (robot) ->
     if metric == 'uniques'
       metric = 'unique_users'
 
-    robot.http(apiURL("/project/#{process.env.HUBOT_SPLUNK_KEY}/analytics.json"))
-      .header("X-BugSense-Auth-Token", "#{process.env.HUBOT_SPLUNK_PROJECT_KEY}")
+    robot.http(apiURL("/project/#{process.env.HUBOT_SPLUNK_PROJECT_KEY}/analytics.json"))
+      .header("X-BugSense-Auth-Token", "#{process.env.HUBOT_SPLUNK_KEY}")
       .header('Accept', 'application/json')
       .get() (err, res, body) ->
         if err
-          msg.send "Couldn't find anything :("
+          msg.send err
+          return
+
+        if res.statusCode isnt 200
+          msg.send "Bam! #{res.statusCode}: #{body}"
           return
 
         data = JSON.parse(body)
