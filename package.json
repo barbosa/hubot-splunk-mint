@@ -1,7 +1,7 @@
 {
   "name": "hubot-splunk-mint",
-  "version": "0.0.3",
-  "description": "Access SplunkMint data via hubot",
+  "version": "0.0.4",
+  "description": "Access data from Splunk Mint via hubot.",
   "main": "index.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
