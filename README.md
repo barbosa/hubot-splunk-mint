@@ -29,7 +29,7 @@ Run `npm install`
 In order to use **hubot-splunk-mint**, you need to set two environment variables:
 
 - `HUBOT_SPLUNK_KEY`: Your SplunkMint API key. It can be found [here](https://mint.splunk.com/account).
-- `HUBOT_SPLUNK_PROJECT_KEY`: Your project API key
+- `HUBOT_SPLUNK_PROJECT_KEY`: Your project API key. It can be found [here](https://mint.splunk.com/dashboard).
 
 ## Sample Interaction
 
@@ -41,3 +41,7 @@ Hubot> Shell: There are 17 sessions today. Yesterday, they were 29.
 Hubot> hubot how many uniques in splunk?
 Hubot> Shell: There are 12 unique_users today. Yesterday, they were 20.
 ```
+
+## Credits
+
+This script was based on [Jared Barboza](http://github.com/codeimpossible)'s implementation of [hubot-trello](https://github.com/hubot-scripts/hubot-trello/).
