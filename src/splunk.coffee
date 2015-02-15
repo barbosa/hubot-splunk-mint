@@ -13,7 +13,7 @@ module.exports = (robot) ->
 
   ensureConfig console.log
 
-  robot.respond /how many (crashes|sessions|uniques)\??/i, (msg) ->
+  robot.respond /how many (crashes|sessions|uniques) in splunk\??$/i, (msg) ->
 
     metric = msg.match[1]
 

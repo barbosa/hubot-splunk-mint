@@ -34,10 +34,10 @@ In order to use **hubot-splunk-mint**, you need to set two environment variables
 ## Sample Interaction
 
 ```
-Hubot> hubot how many crashes?
+Hubot> hubot how many crashes in splunk?
 Hubot> Shell: There are 0 crashes today. Yesterday, they were 2.
-Hubot> hubot how many sessions?
+Hubot> hubot how many sessions in splunk?
 Hubot> Shell: There are 17 sessions today. Yesterday, they were 29.
-Hubot> hubot how many uniques?
+Hubot> hubot how many uniques in splunk?
 Hubot> Shell: There are 12 unique_users today. Yesterday, they were 20.
 ```
