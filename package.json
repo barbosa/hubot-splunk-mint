@@ -1,6 +1,6 @@
 {
   "name": "hubot-splunk-mint",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Access data from Splunk Mint via hubot.",
   "main": "index.coffee",
   "scripts": {
