@@ -6,12 +6,13 @@
 #
 # Configuration:
 #   HUBOT_SPLUNK_KEY - Your SplunkMint API key
-#   HUBOT_SPLUNK_PROJECT_KEY - Your project API key
+#   HUBOT_SPLUNK_PROJECT_KEYS - Your project API keys. Format must be:
+#     HUBOT_SPLUNK_PROJECT_KEYS="my_project=12aed3,other=341bc21"
 #
 # Commands:
-#   hubot how many crashes in splunk - Show the crashes count
-#   hubot how many sessions in splunk - Show the sessions count
-#   hubot how many uniques in splunk - Show the unique_users count
+#   hubot splunk my_project crashes - Show the crashes count for "my_project"
+#   hubot splunk my_project sessions - Show the sessions count for "my_project"
+#   hubot splunk my_project uniques - Show the unique_users count for "my_project"
 #
 # Notes:
 #   Your SplunkMint API key can be found at https://mint.splunk.com/account
@@ -22,8 +23,8 @@
 
 ensureConfig = (out) ->
   out "Error: Splunk app key is not specified" unless process.env.HUBOT_SPLUNK_KEY
-  out "Error: Splunk project key is not specified" unless process.env.HUBOT_SPLUNK_PROJECT_KEY
-  return false unless (process.env.HUBOT_SPLUNK_KEY and process.env.HUBOT_SPLUNK_PROJECT_KEY)
+  out "Error: Splunk project keys is not specified" unless process.env.HUBOT_SPLUNK_PROJECT_KEYS
+  return false unless (process.env.HUBOT_SPLUNK_KEY and process.env.HUBOT_SPLUNK_PROJECT_KEYS)
 
 apiURL = (path) ->
   return "https://www.bugsense.com/api/v1#{path}"
@@ -32,14 +33,30 @@ module.exports = (robot) ->
 
   ensureConfig console.log
 
-  robot.respond /how many (crashes|sessions|uniques) in splunk\??$/i, (msg) ->
+  robot.respond /splunk (.*) (crashes|sessions|uniques)\??$/i, (msg) ->
 
-    metric = msg.match[1]
+    projectName = msg.match[1]
+    projectKey = ''
+
+    aliases = process.env.HUBOT_SPLUNK_PROJECT_KEYS.split ","
+    availableProjects = []
+    for alias in aliases
+      [aliasName, aliasKey] = alias.split "="
+      availableProjects.push aliasName
+      if aliasName == projectName
+        projectKey = aliasKey
+
+    if projectKey == ''
+      msg.send "Sorry. I don't know the project #{projectName}."
+      msg.send "Options are: #{availableProjects}"
+      return
+
+    metric = msg.match[2]
 
     if metric == 'uniques'
       metric = 'unique_users'
 
-    robot.http(apiURL("/project/#{process.env.HUBOT_SPLUNK_PROJECT_KEY}/analytics.json"))
+    robot.http(apiURL("/project/#{projectKey}/analytics.json"))
       .header("X-BugSense-Auth-Token", "#{process.env.HUBOT_SPLUNK_KEY}")
       .header('Accept', 'application/json')
       .get() (err, res, body) ->
