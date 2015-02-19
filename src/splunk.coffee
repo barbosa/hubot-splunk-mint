@@ -29,6 +29,10 @@ ensureConfig = (out) ->
 apiURL = (path) ->
   return "https://www.bugsense.com/api/v1#{path}"
 
+toSingular = (actionName) ->
+    map = {"crashes": "crash", "sessions": "session", "uniques": "unique"}
+    return map[actionName]
+
 module.exports = (robot) ->
 
   ensureConfig console.log
@@ -69,7 +73,17 @@ module.exports = (robot) ->
           return
 
         data = JSON.parse(body)
-        today = data[metric][2]
-        yesterday = data[metric][1]
+        todayCount = parseInt(data[metric][2], 10)
+        yesterdayCount = parseInt(data[metric][1], 10)
 
-        msg.reply "There are #{today} #{metric} today. Yesterday, they were #{yesterday}."
+        if todayCount == 1
+            todayMessage = "There is 1 #{toSingular(metric)} today."
+        else
+            todayMessage = "There are #{todayCount} #{metric} today."
+
+        if yesterdayCount == 1
+            yesterdayMessage = "Yesterday, it was 1."
+        else
+            yesterdayMessage = "Yesterday, they were #{yesterdayCount}."
+
+        msg.reply "#{todayMessage} #{yesterdayMessage}"
