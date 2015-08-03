@@ -1,6 +1,6 @@
 hubot-splunk-mint
 =================
-Access data from [Splunk Mint](http://mint.splunk.com) (former BugSense) via hubot.
+Access [Splunk Mint](http://mint.splunk.com) (former BugSense) data using Hubot.
 
 
 ## Installation
